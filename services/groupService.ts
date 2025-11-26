@@ -56,7 +56,7 @@ export class GroupsService {
   async deleteGroup(id: string) {
     try {
       const response = await apiClient.delete<any>(`/groups/${id}`)
-      return response.success || false
+      return response || false
     } catch (error) {
       console.error("Delete user error:", error)
       return false

@@ -35,7 +35,7 @@ export class UsersService {
 
   async createUser(user: any) {
     try {
-      const response = await apiClient.upload<any>("/users", user)
+      const response = await apiClient.post<any>("/users", user)
       return response || null
     } catch (error) {
       console.error("Create user error:", error)
@@ -45,7 +45,7 @@ export class UsersService {
 
   async updateUser(id: string, user: any) {
     try {
-      const response = await apiClient.uploadPatch<any>(`/users/${id}`, user)
+      const response = await apiClient.patch<any>(`/users/${id}`, user)
       return response || null
     } catch (error) {
       console.error("Update user error:", error)
@@ -56,7 +56,7 @@ export class UsersService {
   async deleteUser(id: string) {
     try {
       const response = await apiClient.delete<any>(`/users/${id}`)
-      return response.success || false
+      return response || false
     } catch (error) {
       console.error("Delete user error:", error)
       return false
@@ -66,7 +66,7 @@ export class UsersService {
   async changeUserStatus(id: string, status: "active" | "inactive" | "pending"): Promise<boolean> {
     try {
       const response = await apiClient.put<any>(`/users/${id}/status`, { status })
-      return response.success || false
+      return response || false
     } catch (error) {
       console.error("Change user status error:", error)
       return false

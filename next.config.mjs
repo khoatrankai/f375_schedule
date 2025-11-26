@@ -12,6 +12,10 @@ const nextConfig = {
    async rewrites() {
     return [
       {
+        source: '/public/documents/:path*',
+        destination: `${process.env.NEXT_PUBLIC_API_OK}/public/documents/:path*`, // Chuyển /public/header.png -> /header.png
+      },
+      {
         source: '/public/:path*',
         destination: '/:path*', // Chuyển /public/header.png -> /header.png
       },

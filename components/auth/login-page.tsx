@@ -7,8 +7,8 @@ import { useAuth } from "@/lib/auth-context"
 import { Shield } from "lucide-react"
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("admin@squadron375.mil")
-  const [password, setPassword] = useState("password")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const { login } = useAuth()

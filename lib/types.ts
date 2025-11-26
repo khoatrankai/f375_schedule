@@ -11,6 +11,23 @@ export interface User {
   createdAt: Date
   updatedAt: Date
 }
+export interface WeekInfo {
+  weekNumber: number
+  month: number
+  year: number
+  weekStart: string // ISO date string
+}
+export interface ScheduleEntry {
+  id?: string
+  time: string
+  time_start:string
+  time_end:string
+  description: string
+  location: string
+  group: any
+  users: any
+  // weekStart: string // ISO date string for the Monday of the week
+}
 
 export interface Department {
   id: string

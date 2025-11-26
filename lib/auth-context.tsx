@@ -61,22 +61,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = async (email: string, password: string) => {
     setIsLoading(true)
     // Mock authentication - in production, call your API
-    // const res = await usersService.loginUser({email,password})
-    // if(res?.statusCode === 200){
-    //   setUser(res?.data)
-    // }
-    const mockUser: User = {
-      id: "1",
-      name: "Trung tá Nguyễn Văn A",
-      email: email,
-      role: "admin",
-      department: "Sư đoàn Phòng không 375",
-      rank: "Trung tá",
-      createdAt: new Date(),
-      updatedAt: new Date(),
+    const res = await usersService.loginUser({email,password})
+    if(res?.statusCode === 200){
+      setUser({...res?.data,rank:listLevel.find(dt => dt.tag === res?.data?.level)?.value})
+       localStorage.setItem("currentUser", JSON.stringify({...res?.data,rank:listLevel.find(dt => dt.tag === res?.data?.level)?.value}))
+     
     }
-    setUser(mockUser)
-    localStorage.setItem("currentUser", JSON.stringify(mockUser))
+    // const mockUser: User = {
+    //   id: "1",
+    //   name: "Trung tá Nguyễn Văn A",
+    //   email: email,
+    //   role: "admin",
+    //   department: "Sư đoàn Phòng không 375",
+    //   rank: "Trung tá",
+    //   createdAt: new Date(),
+    //   updatedAt: new Date(),
+    // }
+    // setUser(mockUser)
     setIsLoading(false)
   }
 
